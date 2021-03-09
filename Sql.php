@@ -1,16 +1,33 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- * Description of Sql
- *
- * @author Acer
- */
-class Sql {
-    //put your code here
+class Sql extends PDO {
+    
+    private $conn;
+    
+    public function __construct() {// PDO (PHP Data Object) é uma extensão da linguagem PHP para acesso a banco de dados.
+        $this->conn = new PDO("mysql:host=localhost;dbname=dbphp7", "root", "root");
+    }
+    private function setParams($statement, $parameters= array()) {
+        foreach ($parameters as $key => $value) {
+            $statement->setParam($key, $value);
+            }
+       }
+
+       private function setParam($statement, $key, $value) {
+           $statement->bindParam($key, $value);
+       }
+       
+       
+       public function query($rawQuery, $params = array()) {
+           $stmt = $this->conn->prepare($rawQuery);
+           $this->setParams($stmt, $params);
+           $stmt->execute();
+           return $stmt;
+       }
+       public function select($rawQuery, $params = array()):array {
+           $stmt = $this->query($rawQuery, $params);
+           $stmt->fetchAll(PDO::FETCH_ASSOC);
+       }
+       
 }
