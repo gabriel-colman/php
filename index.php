@@ -13,9 +13,15 @@ and open the template in the editor.
     <body>
         <?php
             require_once("./config.php");
-            $sql = new Sql();
-            $usuarios =   $sql->select("SELECT * FROM tb_usuarios");
-            echo json_encode($usuarios);
+//            $sql = new Sql();
+//            $usuarios =   $sql->select("SELECT * FROM tb_usuarios");
+//            echo json_encode($usuarios); 
+              // VOU MEXER AGORA COM CLASSE USUARIO
+            
+            $root = new usuario();
+            $root->loadById(3);
+            echo $root;
+            
         ?>
     </body>
 </html>
