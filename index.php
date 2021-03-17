@@ -18,10 +18,22 @@ and open the template in the editor.
 //            echo json_encode($usuarios); 
               // VOU MEXER AGORA COM CLASSE USUARIO
             
-            $root = new usuario();
-            $root->loadById(3);
-            echo $root;
             
+            //---------Carrega um usuario
+//            $root = new usuario();
+//            $root->loadById(3);
+//            echo $root;
+            
+            //-------Carrega uma lista de usuario
+            //$lista = usuario::getList() 
+                    
+            //---------Carrega uma lista de usuario buscando pelo login
+//            $seach = usuario::search("jo");//procura todos os usuarios que comessa com "jo"
+//            echo json_encode($seach);
+            
+            //---------Carrega uma lista de usuario buscando pelo login e a senha 
+            $usuario = new usuario();
+            $usuario->login("root", "!@#");
         ?>
     </body>
 </html>
